@@ -46,4 +46,10 @@ export class WebService {
     
         return this.http.post(AppConstant.API_URL + 'api/web/AddTaskAndSubTask',obj, { headers: this.accountService.getRequestHeader() })
     }
+    GetMonthData(): Observable<any> {
+        return this.http.get(AppConstant.API_URL + 'api/web/GetMonthData', { headers: this.accountService.getRequestHeader() })
+    }
+    GetYearData(): Observable<any> {
+        return this.http.get(AppConstant.API_URL + 'api/web/GetYearData', { headers: this.accountService.getRequestHeader() })
+    }
 }

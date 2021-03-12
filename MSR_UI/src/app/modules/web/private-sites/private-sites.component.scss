@@ -36,8 +36,6 @@
 	padding-top: 0px;
 	padding-bottom: 28px;
 	margin: 0px 36px;
-	display: flex;
-    flex-wrap: wrap;
 }
 
 li.active a {
@@ -85,17 +83,4 @@ p {
 	overflow: visible;
 	height: auto;
   }
-  .head span#taskType_1 {
-    word-break: break-all;
-}
-@media (max-width: 1199px){
-	.thrr-col1 {
-		height: 100%;
-	}
-}
 
-@media (max-width: 767px) {
-	.content-bottom {
-		margin: 0px;
-	}
-}

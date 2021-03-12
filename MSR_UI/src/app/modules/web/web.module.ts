@@ -13,25 +13,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from '@progress/kendo-angular-charts';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { AdminSitesComponent } from './admin-sites/admin-sites.component';
-import { CollapseModule } from 'ngx-bootstrap/collapse';  
-import {MatSelectModule} from '@angular/material/select';
-
-
-
 
 const webRoutes: Routes = [{
     path: '',
     component: WebLayoutComponent,
     children: [
-        {
-            path: 'home',
+        { 
+            path: 'home', 
             component: HomeComponent,
-            children: [
+            children:[
                 { path: 'help-desk', component: HelpDeskComponent }
             ]
         },
-        {
-            path: '**',
+        { 
+            path: '**',  
             redirectTo: 'home',
         },
     ]
@@ -53,11 +48,10 @@ const webRoutes: Routes = [{
     imports: [
         CommonModule,
         SafePipeModule,
-        FormsModule,
+        FormsModule, 
         ReactiveFormsModule,
         NgApexchartsModule,
         ChartsModule,
-        CollapseModule.forRoot(),
         RouterModule.forChild(webRoutes),
     ],
 

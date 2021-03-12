@@ -6,7 +6,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { WebService } from 'src/app/_services/web.service';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import * as $ from "jquery";
-import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-admin-sites',
@@ -20,25 +19,42 @@ export class AdminSitesComponent implements OnInit {
   typeList: TypeModel[] = [];
   
   taskStatusList: TaskStatusModel[] = [];
-  filterForm: FormGroup;
+  
+  
   constructor(
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private webService: WebService,
-    private fb: FormBuilder) { }
+   ) { }
 
   ngOnInit(): void {
-    this.getYearAndMonths();
+    this.GetMonthData();
     this.GetTaskType();
     this.GetTaskTaskStatus();
+    this.GetYearData();
+    
   }
-
-  getYearAndMonths() {
+  
+  GetMonthData() {
     this.spinner.show();
-    this.webService.getYearAndMonths().subscribe(data => {
+    this.webService.GetMonthData().subscribe(data => {
       if (data) {
-        this.monthList = data?.months || [];
-        this.yearList = data?.years || [];
+        this.monthList = data;
+      
+      }
+      this.spinner.hide();
+    },
+      (err: HttpErrorResponse) => {
+        this.spinner.hide();
+        this.toastr.error(err.error['Message'], 'Error');
+      }
+    );
+  }
+  GetYearData() {
+    this.spinner.show();
+    this.webService.GetYearData().subscribe(data => {
+      if (data) {
+        this.yearList = data;
       
       }
       this.spinner.hide();
@@ -98,13 +114,12 @@ export class AdminSitesComponent implements OnInit {
       this.spinner.show();
       var obj = {
         Description :  $("#Tasktxt").val(),
-        MonthId : Number($("#Month").val()),
-        Year : Number($("#Year").val()),
+        MonthId : Number($("#Monthdata").val()),
+        Year : Number($("#Yeardata").val()),
         Type : Number($("#Type").val()),
         StatusId : Number($("#TaskStatus").val()),
         SubTaskDescription: $("#SubTasktxt").val()
-      }
-       
+      }   
       this.webService.AddTaskAndSubTask(obj).subscribe(data => {
         if (data) {  
           if(data.success == true)    
@@ -129,11 +144,11 @@ export class AdminSitesComponent implements OnInit {
  
   }
   clear() {
-   $("#Tasktxt").val(''),
-    $("#Month").val(0),
-    $("#Year").val(0),
-   $("#Type").val(''),
-   $("#TaskStatus").val(''),
+   $("#Tasktxt").val(''),   
+   $("#Monthdata").val('')
+   $("#Yeardata").val('')
+   $("#Type").val('')
+   $("#TaskStatus").val('')
    $("#SubTasktxt").val('')
   }
 }

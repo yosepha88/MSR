@@ -10,8 +10,6 @@ export class TaskModel {
     ModifiedBy: number | null;
     ModifiedDate: Date | string | null;
     SubTasks: SubTaskModel[];
-    Icon?: string;
-    PrivateType?: string;
 }
 export class SubTaskModel {
     Id: number;
@@ -28,7 +26,7 @@ export class JiraTicketModel {
 }
 export class MonthModel {
     Id: number;
-    monthName: string;
+    MonthName: string;
 }
 export class TypeModel {
     Id: number;
@@ -39,7 +37,7 @@ export class TaskStatusModel {
     Description: string;
 }
 export class YearModel {
-    year: number;
+    Year: number;
 }
 
 export class HelpDeskModel {

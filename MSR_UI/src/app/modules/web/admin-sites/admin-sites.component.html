@@ -1,10 +1,10 @@
 <div class="title-sec-right">
 
-    <form [formGroup]="filterForm">
-        <div class="row col-12">
+    <form>
+        <div class="row col-12" >
             <div class="col-4">
                 <span>MONTH</span>
-                <select class="dropdown" formControlName='Month' id="Month" style="width: 219px;margin-left:5px;">
+                <select class="dropdown" formControlName='Monthdata' id="Monthdata" >
                     <option *ngFor="let month of monthList" [value]="month.id" >
                         {{month.monthName}}
                     </option>
@@ -12,13 +12,13 @@
             </div>
             <div class="col-4">
                 <span>YEAR</span>
-                <select class="dropdown" formControlName='Year' id="Year" style="width: 219px;margin-left:5px;">
+                <select class="dropdown" formControlName='Monthdata' id="Yeardata" >
                     <option *ngFor="let year of yearList" [value]="year.year">{{year.year}}</option>
                 </select>
             </div>
             <div class="col-4">
                 <span>TYPE</span>
-                <select class="dropdown" formControlName='Type' id="Type" style="width: 219px;margin-left:5px;">
+                <select class="dropdown" formControlName='Type' id="Type" >
                     <option *ngFor="let type of typeList" [value]="type.id">
                         {{type.name}}
                     </option>
@@ -26,31 +26,32 @@
         
             </div>
         </div>
-        <div class="row col-12"  style="margin-top:20px;">
+        <div class="row col-12" >
             <div class="col-6">
                 <span >TASK STATUS</span>
-                <select class="dropdown" formControlName='TaskStatus' id="TaskStatus" style="width: 300px;margin-left:5px;">
+                <select class="dropdown" formControlName='c' id="TaskStatus" >
                     <option *ngFor="let taskStatus of taskStatusList" [value]="taskStatus.id">{{taskStatus.description}}</option>
                 </select>
             </div>
             </div>
-            <div class="row col-12" style="margin-top:20px;">
+            <div class="row col-12" >
                 <div class="col-6">
-                    <div >
-                        <span style="float:left;">TASK</span>
-                        <textarea style="float:left;margin-left:10px;width: 504px;" id="Tasktxt" name="Tasktxt" rows="4" cols="50">                           
+                    <div>
+                        <span>TASK</span>
+                        <textarea id="Tasktxt" name="Tasktxt" rows="4" cols="50">                           
                             </textarea>
                     </div>
                 </div>
                 <div class="col-6">
-                    <span style="float:left;">SUB TASK</span>
-                    <textarea style="float:left;margin-left:10px;width: 483px;" id="SubTasktxt" name="SubTasktxt" rows="4" cols="50">                      
+                    <span >SUB TASK</span>
+                    <textarea id="SubTasktxt" name="SubTasktxt" rows="4" cols="50">                      
                         </textarea>
                       </div>
             </div>
                   
             <div class="row col-12" style="margin-top:20px;margin-left: 20px;">
-                <button type="submit" style="background-color: #008CBA;width: 114px;" value="Submit" (click)="AddTaskAndSubTask()">Submit</button>
+                <button type="submit" style="background-color: #28a745;    width: 231px;
+                height: 50px;color:white" value="Submit" (click)="AddTaskAndSubTask()">Submit</button>
             </div>
       
        
