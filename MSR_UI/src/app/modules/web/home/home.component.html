@@ -1,0 +1,90 @@
+<div class="bottom">
+    <div class="row header-secondary">
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="title-sec-left">
+                        <div class="msr-txt">MSR:</div>
+                        <div class="msr-mnth">
+                            <span class="title-month">{{monthList[filterForm.get('Month').value - 1]?.monthName}}</span>
+                            <span class="title-year">{{filterForm.get('Year').value}}</span>
+                        </div>
+                        <div class="left-righticon">
+                            <a class="pointer prev-navigation" (click)="setMonth(false)">&lt;</a>
+                            &nbsp;&nbsp;&nbsp;
+                            <a class="pointer next-navigation" (click)="setMonth(true)">&gt;</a>
+                        </div>
+                    </div>
+                    <div class="title-sec-right">
+
+                        <form [formGroup]="filterForm">
+                            <span>MONTH</span>
+                            <select class="dropdown month" formControlName='Month' id="Month" (change)="getPublicSiteData(); getHelpDeskTickets(); getWebTrendReportData(); getPrivateSiteData();">
+                                <option *ngFor="let month of monthList; let i = index" [value]="month.id" id="{{ 'month_' + i }}">
+                                    {{month.monthName}}
+                                </option>
+                            </select>&nbsp;&nbsp;
+
+                            <span>YEAR</span>
+                            <select class="dropdown year" formControlName='Year' id="Year" (change)="getPublicSiteData(); getHelpDeskTickets(); getWebTrendReportData(); getPrivateSiteData();">
+                                <option *ngFor="let year of yearList; let i = index" [value]="year.year" id="{{ 'year_' + i }}">{{year.year}}</option>
+                            </select>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <nav class="navbar navbar-expand-md bg-light navbar-light">
+                        <button class="navbar-toggler collapsed" type="button" (click)="isCollapsed = !isCollapsed" aria-expanded="false">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" [collapse]="isCollapsed" id="collapsibleNavbar">
+                            <ul class="navbar-nav">
+                                <li class="nav-item" [ngClass]="{'active' : activeTab === 1}" (click)="ChangeTab(1)">
+                                    <a class="nav-link" data-toggle="tab" routerLink="/home/public-sites">Public Sites</a>
+                                </li>
+                                <li class="nav-item" [ngClass]="{'active' : activeTab === 2}" (click)="ChangeTab(2)">
+                                    <a class="nav-link" data-toggle="tab" routerLink="/home/private-sites">Private Sites</a>
+                                </li>
+                                <li class="nav-item" [ngClass]="{'active' : activeTab === 3}" (click)="ChangeTab(3)">
+                                    <a class="nav-link" data-toggle="tab" routerLink="/home/help-desk">Help Desk</a>
+                                </li>
+                                <li class="nav-item" [ngClass]="{'active' : activeTab === 4}" (click)="ChangeTab(4)">
+                                    <a class="nav-link" data-toggle="tab" routerLink="/home/web-trend-report">Web Trend Reports</a>
+								</li>
+                                <li class="nav-item" [ngClass]="{'active' : activeTab === 5}" (click)="ChangeTab(5)">
+                                    <a class="nav-link" data-toggle="tab" routerLink="/home/admin-sites">Admin</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div class="tab-pane" id="PublicSites" [ngClass]="{'active' : activeTab === 1}">
+            <app-public-sites [demo]="apiResponse"></app-public-sites>
+        </div>
+
+        <div class="tab-pane" id="PrivateSites" [ngClass]="{'active' : activeTab === 2}">
+            <app-private-sites [demo1]="PrivateSiteData"></app-private-sites>
+        </div>
+
+        <div class="tab-pane" id="HelpDesk" [ngClass]="{'active' : activeTab === 3}">
+            <app-help-desk [demo2]="HelpDeskTickets"></app-help-desk>
+        </div>
+
+        <div class="tab-pane" id="WebTrendReports" [ngClass]="{'active' : activeTab === 4}">
+            <app-web-trend-report [demo3]="WebTrendData" [WebTrendlength]="length"></app-web-trend-report>
+        </div>
+
+      <div class="tab-pane"  [ngClass]="{'active' : activeTab === 5}" style="height: 309px;">
+            <app-admin-sites></app-admin-sites>
+        </div>
+    </div>
+</div>
