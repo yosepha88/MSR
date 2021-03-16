@@ -9,6 +9,8 @@
 	padding-top: 0px;
 	padding-bottom: 28px;
 	margin: 0px 36px;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 .thrr-col {
@@ -74,4 +76,28 @@ li {
 	text-align: center;
 	font-weight: bold;
 	font-size: 20px;
+}
+@media (max-width: 1199px) {
+	.thrr-col1 ol {
+		padding-left: 35px !important;
+	}
+	.thrr-col1 ol li {
+		word-break: break-all;
+	}
+	.thrr-col1 {
+		height: 100%;
+	}
+}
+@media (max-width: 767px) {
+	.content-bottom {
+		margin: 0px;
+	}
+}
+@media (max-width: 370px) {
+	.thrr-col1 ol {
+		padding-left: 35px !important;
+	}
+	.thrr-col1 ol li {
+		word-break: break-all;
+	}
 }

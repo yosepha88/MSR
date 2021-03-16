@@ -16,7 +16,6 @@ exports.config = {
     browserName: 'chrome'
   },
   directConnect: true,
-  //baseUrl: 'http://msr.vidhaninfotech.com/',
   baseUrl: 'http://localhost:4200/',
   framework: 'jasmine',
   jasmineNodeOpts: {

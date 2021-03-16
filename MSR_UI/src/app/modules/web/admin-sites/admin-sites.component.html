@@ -1,6 +1,5 @@
-<div class="title-sec-right">
-
-    <form>
+<div class="title-sec-right"> 
+    <form [formGroup]="filterForm">
         <div class="row col-12" >
             <div class="col-4">
                 <span>MONTH</span>
@@ -12,13 +11,13 @@
             </div>
             <div class="col-4">
                 <span>YEAR</span>
-                <select class="dropdown" formControlName='Monthdata' id="Yeardata" >
+                <select class="dropdown" formControlName='Yeardata' id="Yeardata" >
                     <option *ngFor="let year of yearList" [value]="year.year">{{year.year}}</option>
                 </select>
             </div>
             <div class="col-4">
                 <span>TYPE</span>
-                <select class="dropdown" formControlName='Type' id="Type" >
+                <select class="dropdown"  id="Type" >
                     <option *ngFor="let type of typeList" [value]="type.id">
                         {{type.name}}
                     </option>
@@ -29,9 +28,14 @@
         <div class="row col-12" >
             <div class="col-6">
                 <span >TASK STATUS</span>
-                <select class="dropdown" formControlName='c' id="TaskStatus" >
+                <select class="dropdown"  id="TaskStatus">
                     <option *ngFor="let taskStatus of taskStatusList" [value]="taskStatus.id">{{taskStatus.description}}</option>
                 </select>
+            </div>
+            <div class="col-6">
+                <span>JIRA TICKESTS</span>                 
+                <input type="number" id="txtjitatickets" name="txtjitatickets">                      
+             
             </div>
             </div>
             <div class="row col-12" >
@@ -52,12 +56,6 @@
             <div class="row col-12" style="margin-top:20px;margin-left: 20px;">
                 <button type="submit" style="background-color: #28a745;    width: 231px;
                 height: 50px;color:white" value="Submit" (click)="AddTaskAndSubTask()">Submit</button>
-            </div>
-      
-       
-   
-       
-              
-    </form>
-
+            </div>   
+        </form>
 </div>

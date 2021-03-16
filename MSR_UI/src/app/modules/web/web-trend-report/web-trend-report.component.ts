@@ -62,7 +62,6 @@ export class WebTrendReportComponent implements OnInit {
   this.spinner.show();
     this.webService.getWebTrendReportData(selectedMonth,selectedYear).subscribe(data => {
       if (data) {
-            //console.log(data);
             this.WebTrendlength = 0;
             this.WebTrendSiteDataLength = 0;
             this.WebTrendNAEPLinkDataLength = 0;

@@ -15,7 +15,7 @@ import * as $ from "jquery";
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
+  isCollapsed = true;
   @Output() demo: TaskModel[] = [];
   @Output() demo1: TaskModel[] = [];
   @Output() demo2: HelpDeskModel[] = [];
@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
       Year: this.fb.control(new Date().getFullYear()),
       Month: this.fb.control(new Date().getMonth() + 1),
       TabId: this.fb.control(WebTabIdEnum.PublicSites)
+      
     });
     this.activeTab = 1;
   }
@@ -71,7 +72,7 @@ export class HomeComponent implements OnInit {
     const currentYear: number = +(this.filterForm.get('Year').value);
 
     if (isNextMonth) {
-      if (currentMonth == MonthEnum.December && this.yearList.find(y => y.Year > currentYear)) {
+      if (currentMonth == MonthEnum.December && this.yearList.find(y => y.year > currentYear)) {
         this.filterForm.get('Year').patchValue(currentYear + 1);
         this.filterForm.get('Month').patchValue(1);
       }
@@ -79,11 +80,11 @@ export class HomeComponent implements OnInit {
         this.filterForm.get('Month').patchValue(currentMonth + 1);
       }
       else {
-        this.toastr.show('You can filter data only between January ' + this.yearList[0].Year + ' to December ' + this.yearList[(this.yearList.length - 1)].Year);
+        this.toastr.show('You can filter data only between January ' + this.yearList[0].year + ' to December ' + this.yearList[(this.yearList.length - 1)].year);
       }
     }
     else {
-      if (currentMonth == MonthEnum.January && this.yearList.find(y => y.Year < currentYear)) {
+      if (currentMonth == MonthEnum.January && this.yearList.find(y => y.year < currentYear)) {
         this.filterForm.get('Year').patchValue(currentYear - 1);
         this.filterForm.get('Month').patchValue(12);
       }
@@ -91,7 +92,7 @@ export class HomeComponent implements OnInit {
         this.filterForm.get('Month').patchValue(currentMonth - 1);
       }
       else {
-        this.toastr.show('You can filter data only between January ' + this.yearList[0].Year + ' to December ' + this.yearList[(this.yearList.length - 1)].Year);
+        this.toastr.show('You can filter data only between January ' + this.yearList[0].year + ' to December ' + this.yearList[(this.yearList.length - 1)].year);
       }
     }
     this.getPublicSiteData()
@@ -142,7 +143,7 @@ export class HomeComponent implements OnInit {
     var selectedYear = $("#Year").val();
 
     this.webService.getPrivateData(selectedMonth,selectedYear).subscribe(data => {
-      if (data) {       
+      if (data) {  
         this.demo1 = data     
         this.PrivateSiteData = data;
       }

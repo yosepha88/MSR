@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MonthModel,YearModel,TaskStatusModel,TypeModel} from 'src/app/_models/web.models';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { WebService } from 'src/app/_services/web.service';
 import { HttpErrorResponse, HttpClient } from '@angular/common/http';
 import * as $ from "jquery";
-
+import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-admin-sites',
   templateUrl: './admin-sites.component.html',
@@ -17,22 +16,27 @@ export class AdminSitesComponent implements OnInit {
   monthList: MonthModel[] = [];
   yearList: YearModel[] = [];
   typeList: TypeModel[] = [];
-  
+
   taskStatusList: TaskStatusModel[] = [];
-  
+  filterForm: FormGroup;
   
   constructor(
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
     private webService: WebService,
-   ) { }
+    private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.GetMonthData();
     this.GetTaskType();
     this.GetTaskTaskStatus();
-    this.GetYearData();
-    
+    this.GetYearData();   
+    this.filterForm = this.fb.group({
+      Yeardata: this.fb.control(new Date().getFullYear()),
+      Monthdata: this.fb.control(new Date().getMonth() + 1),
+      Type: this.fb.control(1),
+      TaskStatusId: this.fb.control(1),
+    });
   }
   
   GetMonthData() {
@@ -100,6 +104,7 @@ export class AdminSitesComponent implements OnInit {
   AddTaskAndSubTask() {
     var flag = true;
    var SubTasktxt = $("#SubTasktxt").val();
+   var Jitatickets = $("#txtjitatickets").val();
     if($("#Tasktxt").val() == null || $("#Tasktxt").val() == '                           \n                            ')
     {
       this.toastr.show("Please Enter Task");    
@@ -109,16 +114,26 @@ export class AdminSitesComponent implements OnInit {
     {
       $("#SubTasktxt").val(null); 
     }
+    if(Jitatickets != '')
+    {
+      if(SubTasktxt == '                      \n                        ')
+      {
+        this.toastr.show("If You what To Add Jira Tickets Then Must Add Sub Task");    
+       flag = false;
+      }
+    }
+    
     if(flag == true)
     {
       this.spinner.show();
       var obj = {
         Description :  $("#Tasktxt").val(),
+        SubTaskDescription :  $("#SubTasktxt").val(),
         MonthId : Number($("#Monthdata").val()),
         Year : Number($("#Yeardata").val()),
         Type : Number($("#Type").val()),
         StatusId : Number($("#TaskStatus").val()),
-        SubTaskDescription: $("#SubTasktxt").val()
+        JiraTicketId: Number($("#txtjitatickets").val()),
       }   
       this.webService.AddTaskAndSubTask(obj).subscribe(data => {
         if (data) {  
@@ -150,5 +165,7 @@ export class AdminSitesComponent implements OnInit {
    $("#Type").val('')
    $("#TaskStatus").val('')
    $("#SubTasktxt").val('')
+   $("#txtjitatickets").val('')
+   this.ngOnInit();
   }
 }

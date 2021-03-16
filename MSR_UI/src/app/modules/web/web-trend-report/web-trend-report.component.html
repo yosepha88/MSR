@@ -1,7 +1,7 @@
 <div class="bottom-content" *ngIf="length == 1">
     <div class="row">
         <div class="content-bottom">
-            <div class="col-sm-12 col-md-4 thrr-col" *ngIf="WebTrendSiteDataLength == 1">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col" *ngIf="WebTrendSiteDataLength == 1">
                 <div class="col-sm-12 thrr-col thrr-col1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendSiteData[0].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendSiteData[0].status}}
@@ -12,7 +12,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4 thrr-col" *ngIf="WebTrendNAEPLinkDataLength == 1">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col" *ngIf="WebTrendNAEPLinkDataLength == 1">
                 <div class="col-sm-12 thrr-col thrr-col1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendNAEPLinkData[0].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendNAEPLinkData[0].status}}
@@ -24,7 +24,7 @@
                     </ol>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4 thrr-col" *ngIf="WebTrendTermDataLength == 1">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col" *ngIf="WebTrendTermDataLength == 1">
                 <div class="col-sm-12 thrr-col thrr-col1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendTermData[0].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendTermData[0].status}}
@@ -37,7 +37,7 @@
                 </div>
             </div>                      
 
-            <!-- <div class="col-sm-12 col-md-4 thrr-col">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col">
                 <div class="col-sm-12 thrr-col thrr-col1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendSiteData[1].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendSiteData[1].status}}
@@ -47,8 +47,8 @@
                         <div [innerHTML]="WebTrendData.webTrendSiteData[1].description | safe: 'html'"></div>
                     </div>
                 </div>
-            </div>  -->
-            <div class="col-sm-12 col-md-4 thrr-col">
+            </div> 
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col">
                 <div class="col-sm-12 thrr-col thrr-col1" *ngIf="WebTrendNRCLinkDataLength == 1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendNRCLinkData[0].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendNRCLinkData[0].status}}
@@ -60,7 +60,7 @@
                     </ol>
                 </div>
             </div>
-            <div class="col-sm-12 col-md-4 thrr-col">
+            <div class="col-sm-12 col-md-6 col-lg-6 col-xl-4 thrr-col">
                 <div class="col-sm-12 thrr-col thrr-col1" *ngIf="WebTrendResourceDataLength == 1">
                     <div class="head">
                         <img src="assets/icons/{{WebTrendData.webTrendResourceData[0].icon}}" class="icon1">&nbsp;&nbsp;{{WebTrendData.webTrendResourceData[0].status}}
